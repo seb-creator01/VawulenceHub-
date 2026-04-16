@@ -11,104 +11,97 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            transition: all 0.2s ease;
         }
 
         :root {
-            --bg-dark: #0a0f0a;
-            --bg-light: #f5f3e8;
-            --text-dark: #1e1e1e;
-            --text-light: #f0f0f0;
             --naija-green: #008751;
             --naija-white: #ffffff;
             --naija-yellow: #fcd116;
             --vawulence-red: #8b0000;
-            --accent-glow: #ff4d4d;
+            --dark-bg: #0a0a0a;
         }
 
         body {
             font-family: 'Segoe UI', 'Poppins', 'Arial', system-ui, sans-serif;
             min-height: 100vh;
+            background: linear-gradient(135deg, #0a0f0a 0%, #1a1a1a 100%);
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px;
-            transition: background 0.3s, color 0.2s;
+            padding: 16px;
             position: relative;
         }
 
-        /* DARK MODE DEFAULT (vawulence style) */
-        body.dark {
-            background: var(--bg-dark);
-            color: var(--text-light);
-        }
-
-        body.light {
-            background: #e0dbc8;
-            color: var(--text-dark);
-        }
-
-        /* Floating angry emoji pattern (semi-transparent) */
-        body.dark::before {
-            content: "😠😤🤬💀🔥😈👊💢";
+        /* Floating angry emoji background */
+        body::before {
+            content: "😠😤🤬💀🔥😈👊💢💥🔪";
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            font-size: 70px;
-            opacity: 0.05;
+            font-size: 80px;
+            opacity: 0.06;
             pointer-events: none;
             white-space: pre;
             overflow: hidden;
             z-index: 0;
-            letter-spacing: 30px;
+            letter-spacing: 40px;
             word-break: break-all;
-            line-height: 1.8;
-        }
-
-        body.light::before {
-            content: "😠😤🤬💀🔥😈👊💢";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            font-size: 70px;
-            opacity: 0.08;
-            pointer-events: none;
-            z-index: 0;
-            white-space: pre;
-            letter-spacing: 30px;
+            line-height: 1.6;
         }
 
         .container {
             position: relative;
             z-index: 10;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(12px);
-            border-radius: 60px 20px 60px 20px;
-            padding: 30px;
-            max-width: 680px;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 48px;
+            padding: 30px 24px;
+            max-width: 650px;
             width: 100%;
-            box-shadow: 0 25px 45px rgba(0,0,0,0.5), 0 0 0 3px var(--naija-yellow), 0 0 0 6px var(--naija-green);
-            transition: background 0.3s;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.6), 0 0 0 3px var(--naija-yellow), 0 0 0 6px var(--naija-green);
         }
 
-        body.light .container {
-            background: rgba(30, 30, 20, 0.92);
-            backdrop-filter: blur(12px);
+        /* Top bar */
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
-        /* header */
+        .mode-btn, .mute-btn {
+            background: var(--naija-green);
+            border: none;
+            padding: 8px 18px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            color: white;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.2s;
+        }
+
+        .mode-btn:hover, .mute-btn:hover {
+            transform: scale(1.05);
+            background: #00a55c;
+        }
+
+        /* Header */
         .header {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
 
         h1 {
-            font-size: 2.2rem;
-            background: linear-gradient(135deg, var(--naija-yellow), #ff8c00);
+            font-size: 2.3rem;
+            background: linear-gradient(135deg, var(--naija-yellow), #ff6600, var(--vawulence-red));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
@@ -119,36 +112,22 @@
             justify-content: center;
         }
 
-        .mode-toggle {
-            display: flex;
-            justify-content: flex-end;
-            margin-bottom: 15px;
-            gap: 12px;
+        .sub {
+            text-align: center;
+            color: #ddd;
+            font-style: italic;
+            margin-top: 8px;
+            font-size: 0.9rem;
         }
 
-        .mode-btn, .mute-btn {
-            background: var(--naija-green);
-            border: none;
-            padding: 6px 14px;
-            border-radius: 40px;
-            cursor: pointer;
-            font-weight: bold;
-            color: white;
-            font-size: 0.8rem;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .input-group {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
+        /* Input section */
+        .input-section {
             margin: 25px 0;
         }
 
-        input {
-            padding: 16px 20px;
+        .name-input {
+            width: 100%;
+            padding: 18px 20px;
             font-size: 1.2rem;
             border: none;
             border-radius: 60px;
@@ -157,22 +136,26 @@
             text-align: center;
             font-weight: bold;
             outline: none;
-            font-family: monospace;
+            margin-bottom: 18px;
         }
 
-        .button-group {
+        .name-input:focus {
+            box-shadow: 0 0 0 3px var(--naija-yellow);
+        }
+
+        .button-row {
             display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
+            gap: 15px;
             justify-content: center;
+            flex-wrap: wrap;
         }
 
-        .roast-btn, .random-btn, .roast-again-btn {
+        .primary-btn {
             background: var(--naija-yellow);
-            color: #1e3a1e;
+            color: #1a3a1a;
             border: none;
-            padding: 14px 22px;
-            font-size: 1.1rem;
+            padding: 14px 28px;
+            font-size: 1.2rem;
             font-weight: bold;
             border-radius: 60px;
             cursor: pointer;
@@ -182,79 +165,133 @@
             transition: 0.2s;
         }
 
-        .roast-btn:hover, .random-btn:hover, .roast-again-btn:hover {
-            transform: scale(1.02);
+        .primary-btn:hover {
+            transform: scale(1.03);
             background: #ffe066;
-            box-shadow: 0 0 12px var(--naija-yellow);
+            box-shadow: 0 0 15px var(--naija-yellow);
         }
 
+        .secondary-btn {
+            background: #444;
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 60px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .secondary-btn:hover {
+            background: #666;
+            transform: scale(1.02);
+        }
+
+        /* Roast card */
         .roast-card {
-            background: #111111dd;
-            backdrop-filter: blur(4px);
+            background: linear-gradient(135deg, #1a1a2e, #0f0f1a);
             border-radius: 40px;
-            padding: 28px 20px;
-            margin: 20px 0;
+            padding: 30px 20px;
+            margin: 25px 0;
             text-align: center;
             border-left: 8px solid var(--vawulence-red);
-            border-right: 2px solid var(--naija-yellow);
-            transition: 0.2s;
+            border-right: 3px solid var(--naija-yellow);
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .roast-emoji {
+            font-size: 3rem;
+            margin-bottom: 15px;
         }
 
         .roast-text {
             font-size: 1.5rem;
             font-weight: bold;
             line-height: 1.4;
-            margin: 15px 0;
+            margin: 20px 0;
             word-break: break-word;
+            color: #fff;
         }
 
         .vawulence-meter {
-            margin: 10px 0;
-            font-size: 1rem;
-            background: #222;
-            border-radius: 40px;
-            padding: 6px 12px;
+            background: #2a2a2a;
+            border-radius: 50px;
+            padding: 10px 18px;
             display: inline-block;
+            font-size: 1rem;
+            font-weight: bold;
+            margin: 10px 0;
         }
 
-        .share-actions {
+        /* Share buttons */
+        .share-grid {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 12px;
-            margin: 20px 0 10px;
+            margin: 20px 0 15px;
         }
 
-        .share-btn {
-            background: #25D366;
-            color: white;
-            padding: 8px 14px;
-            border-radius: 40px;
+        .share-icon {
+            background: #2c2c3e;
             border: none;
+            padding: 10px 16px;
+            border-radius: 50px;
             cursor: pointer;
             font-size: 0.85rem;
             font-weight: bold;
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.2s;
         }
 
-        .copy-btn { background: #00acee; }
-        .twitter-btn { background: #1DA1F2; }
-        .image-btn { background: #9b59b6; }
-        .link-btn { background: #2c3e66; }
+        .share-icon:hover {
+            transform: translateY(-2px);
+        }
+
+        .whatsapp { background: #25D366; }
+        .copy { background: #00acee; }
+        .twitter { background: #1DA1F2; }
+        .image-share { background: #9b59b6; }
+        .link-share { background: #2c3e66; }
+
+        .roast-again {
+            background: var(--vawulence-red);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .roast-again:hover {
+            background: #aa0000;
+        }
 
         footer {
             text-align: center;
             font-size: 0.7rem;
             margin-top: 20px;
-            opacity: 0.8;
+            color: #aaa;
+            border-top: 1px solid #333;
+            padding-top: 15px;
         }
 
         @media (max-width: 550px) {
-            .container { padding: 20px; }
+            .container { padding: 20px 16px; }
             .roast-text { font-size: 1.2rem; }
-            .roast-btn, .random-btn { padding: 10px 16px; font-size: 1rem; }
+            .primary-btn, .secondary-btn { padding: 10px 18px; font-size: 1rem; }
         }
 
-        /* confetti canvas */
         #confetti-canvas {
             position: fixed;
             top: 0;
@@ -266,166 +303,228 @@
         }
     </style>
 </head>
-<body class="dark">
+<body>
     <canvas id="confetti-canvas"></canvas>
     <div class="container">
-        <div class="mode-toggle">
-            <button id="darkLightToggle" class="mode-btn">🌓 Light/Dark</button>
-            <button id="muteSoundBtn" class="mode-btn">🔊 Unmuted</button>
-        </div>
-        <div class="header">
-            <h1><span>😈🔥</span> VAWULENCE HUB <span>🤬💀</span></h1>
-            <p style="font-style: italic; margin-top: 8px;">"We roast you like suya wey dem forget for fire"</p>
+        <div class="top-bar">
+            <button id="darkLightToggle" class="mode-btn">🌙 Dark/Light</button>
+            <button id="muteSoundBtn" class="mute-btn">🔊 Sound ON</button>
         </div>
 
-        <div class="input-group">
-            <input type="text" id="userName" placeholder="Drop your name... e.g. Emeka, Zainab, Oga" autocomplete="off">
-            <div class="button-group">
-                <button id="roastBtn" class="roast-btn">🔥 ROAST ME 🔥</button>
-                <button id="randomRoastBtn" class="random-btn">🎲 Random Roast</button>
+        <div class="header">
+            <h1>😈🔥 VAWULENCE HUB 🔥😈</h1>
+            <div class="sub">"We roast you like plantain — until you sweet!"</div>
+        </div>
+
+        <div class="input-section">
+            <input type="text" id="userName" class="name-input" placeholder="Drop your name... e.g. Emeka, Fatima, Oga" autocomplete="off">
+            <div class="button-row">
+                <button id="roastBtn" class="primary-btn">🔥 ROAST ME 🔥</button>
+                <button id="randomRoastBtn" class="secondary-btn">🎲 Random Roast</button>
             </div>
         </div>
 
         <div id="roastCard" class="roast-card" style="display: none;">
-            <div id="roastEmoji" style="font-size: 2.5rem;">😈</div>
+            <div id="roastEmoji" class="roast-emoji">😈</div>
             <div id="roastMessage" class="roast-text">Your roast go appear here</div>
             <div id="vawulenceMeter" class="vawulence-meter">⚡ Vawulence Level: 0%</div>
-            <div class="share-actions">
-                <button id="copyTextBtn" class="share-btn copy-btn">📋 Copy Roast</button>
-                <button id="whatsappShareBtn" class="share-btn">📱 WhatsApp</button>
-                <button id="twitterShareBtn" class="share-btn twitter-btn">🐦 Twitter</button>
-                <button id="shareImageBtn" class="share-btn image-btn">🖼️ Share as Image</button>
-                <button id="copyLinkBtn" class="share-btn link-btn">🔗 Copy Link</button>
+            
+            <div class="share-grid">
+                <button id="copyTextBtn" class="share-icon copy">📋 Copy</button>
+                <button id="whatsappShareBtn" class="share-icon whatsapp">📱 WhatsApp</button>
+                <button id="twitterShareBtn" class="share-icon twitter">🐦 Twitter</button>
+                <button id="shareImageBtn" class="share-icon image-share">🖼️ Image</button>
+                <button id="copyLinkBtn" class="share-icon link-share">🔗 Link</button>
             </div>
-            <button id="roastAgainBtn" class="roast-again-btn" style="margin-top: 12px;">⚡ Roast Again ⚡</button>
+            
+            <button id="roastAgainBtn" class="roast-again">⚡ ROAST AGAIN ⚡</button>
         </div>
 
         <footer>
             🔥 Developed by <strong>Seb-Creations</strong> | Pure vawulence — no real wahala 😈<br>
-            📸 Images include watermark & link: vawulencehub.ng/roast
+            📸 Images include watermark: Seb-Creations 🔥 | vawulencehub.pages.dev
         </footer>
     </div>
 
     <script>
-        // ----------------------------- NAIJA ROAST DATABASE (DYNAMIC 50K+ combos) ---------------------------------
-        const prefixes = ["Oya", "Abeg", "Chai", "Bros", "Sis", "Mchew", "Guy", "Mumu", "Olodo", "Opomulero", "Ehn", "Walahi", "Talai", "Kai", "Chei", "Aunty", "Uncle", "Alhaji", "Chief", "Werey"];
+        // ======================== NIGERIAN ROAST DATABASE ========================
+        const prefixes = ["Oya", "Abeg", "Chai", "Bros", "Sis", "Mchew", "Guy", "Mumu", "Olodo", "Opomulero", "Ehn", "Walahi", "Talai", "Kai", "Chei", "Aunty", "Uncle", "Alhaji", "Chief", "Werey", "Ode", "Agbaya"];
         const nameReact = ["you wey call yourself", "this one wey answer", "Mr/Mrs", "almighty", "Mr man wey bear", "the great", "celebrity wey no get show", "big boy", "small pikin", "oga at the top"];
         const insults = [
             "your brain no balance", "you dey form expensive", "your swag na fake", "you too dull", "your head dey there",
             "you be like okada wey carry three passengers", "you dey waste oxygen", "your face scatter like Lagos road",
-            "your IQ level na room temperature", "you be local champion for village", "you fit lose for argument with mosquito",
-            "your sense dey sleep", "na you be why MTN dey send data alert", "you be like phone wey no get battery",
-            "your future dark like generator fume", "you get mouth but no evidence", "you be story wey get no point",
-            "your existence na bug", "you be like pure water wey don expire", "your matter tire even God"
+            "your IQ level na room temperature", "you be local champion for village", "your sense dey sleep", 
+            "na you be why MTN dey send data alert", "you be like phone wey no get battery", "your future dark like generator fume",
+            "you get mouth but no evidence", "your existence na bug", "your matter tire even God", "you be prototype of failure"
         ];
         const actions = [
             "dey beg for data", "still dey charge phone for next compound", "use your last 100 naira buy pure water",
             "dey wear fake gucci", "still dey live with mama", "never see money before", "dey shout 'we move' but no shoe",
             "dey flex on zero balance", "dey tweet like activist but no light", "dey form pastor but you owe everyone",
-            "dey call yourself influencer", "still dey use torchlight for Nokia", "dey borrow clothes for wedding",
-            "dey watch TikTok for 2G network", "dey talk say you get car — but na keke"
+            "still dey use torchlight for Nokia", "dey borrow clothes for wedding", "dey watch TikTok for 2G network"
         ];
         const punchlines = [
             "e sweet you?", "who tell you say you fine?", "you no shame?", "abeg park well", "your mates dey fly",
-            "even your shadow dey laugh you", "come and be going", "your ancestors dey cry", "oga at the top? more like oga for gutter",
-            "na so you take wake today?", "you be wahala", "e no better for you at all", "God when?", "your confidence ehn... chai"
+            "even your shadow dey laugh you", "come and be going", "your ancestors dey cry", "e no better for you at all"
         ];
         const extraRoasts = [
             "Omo, you be like person wey dey use Nokia torch for midnight 😂", "Your brain dey sleep — e even snore 💀",
             "You get mouth to type name but you no get sense? 🤡", "Na you dey make 'no network' dey cry 🗑️",
             "You be like suya wey dem burn — bitter and useless 🔥", "Even baba ijebu reject your subscription 🐌",
-            "Your future dey under lockdown 📉", "You get swag like wetin? Like mosquito wey wear jacket? 🤣",
-            "You be local man wey discover Instagram yesterday 😭", "Your name sweet but your life na wahala 💀",
-            "Dem born you as warning ⚠️", "You be like NEPA — always failing expectations 🔌", "You get 5G dreams for 2G brain 🧠🚫",
-            "Oya go and sit down, even chair dey reject you 💺❌", "Your matter pass MKO Abiola — we never resolve am 😂",
-            "If Vawulence be person, you go be im houseboy 😈"
+            "Your future dey under lockdown 📉", "Dem born you as warning ⚠️", "You be like NEPA — always failing expectations 🔌",
+            "You get 5G dreams for 2G brain 🧠🚫", "Oya go and sit down, even chair dey reject you 💺❌"
         ];
-        const emojisList = ["😂","🤣","😭","💀","🔥","👎","🍗","🧠🚫","🤡","🐌","💩","🗑️","📉","🪫","🧹","🤦","🙆","🥴","😹","👊","💢"];
+        const emojisList = ["😂","🤣","😭","💀","🔥","👎","🤡","🐌","💩","🗑️","📉","🪫","💢","👊","😹","🥴"];
 
         function randomFrom(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
 
-        function generateUniqueRoast(name) {
-            if (!name || name.trim() === "") name = "Mumu";
+        function generateRoast(name) {
+            if (!name || name.trim() === "") name = "Mumu wey no input name";
             const clean = name.trim();
-            if (Math.random() < 0.25) {
+            
+            if (Math.random() < 0.3) {
                 let roast = randomFrom(extraRoasts);
                 if (!roast.toLowerCase().includes(clean.toLowerCase())) roast = `${clean}, ${roast}`;
                 return roast;
             }
+            
             const prefix = randomFrom(prefixes);
-            const nameReactPick = randomFrom(nameReact);
             const insult = randomFrom(insults);
-            const action = Math.random() < 0.6 ? `, ${randomFrom(actions)}` : "";
+            const action = Math.random() < 0.5 ? `, ${randomFrom(actions)}` : "";
             const punch = randomFrom(punchlines);
-            const styles = Math.floor(Math.random() * 4);
+            
+            const styles = Math.floor(Math.random() * 3);
             let roast = "";
-            if (styles === 0) roast = `${prefix} ${clean} ${nameReactPick} — ${insult} ${action}. ${punch}`;
-            else if (styles === 1) roast = `${clean}! ${insult} ${action}. ${prefix} ${punch}`;
-            else if (styles === 2) roast = `${prefix}! ${clean} ${action}. ${insult}. ${punch} ehn!`;
-            else roast = `${insult} ${action}. ${clean}, ${punch} ${prefix}?`;
+            if (styles === 0) roast = `${prefix} ${clean}! ${insult} ${action}. ${punch}`;
+            else if (styles === 1) roast = `${clean}, ${insult} ${action}. ${prefix} ${punch}`;
+            else roast = `${insult} ${action}. ${clean}, ${punch} 😈`;
+            
             return roast.replace(/\s+/g, ' ').replace(/ ,/g, ',').trim();
         }
 
-        function addEmojisToRoast(text) {
-            let count = Math.floor(Math.random() * 4) + 1;
+        function addEmojis(text) {
+            let count = Math.floor(Math.random() * 3) + 2;
             let emojis = "";
-            for (let i=0; i<count; i++) emojis += randomFrom(emojisList);
+            for (let i = 0; i < count; i++) emojis += randomFrom(emojisList);
             return `${text} ${emojis}`;
         }
 
-        // vawulence meter: random 60-100% for epic
-        function getVawulencePercent() {
-            return Math.floor(Math.random() * 41) + 60; // 60-100%
+        function getVawulence() {
+            return Math.floor(Math.random() * 41) + 60;
         }
 
-        // ------ SOUND SYSTEM (web audio) -------
+        // ======================== FIXED SOUND SYSTEM (LOUD & CLEAR) ========================
         let soundEnabled = true;
         let audioCtx = null;
-        function initAudio() { if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
-        function playTone(freq, duration, type='sine') {
+        
+        function initAudio() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+        }
+        
+        function playSound(type) {
             if (!soundEnabled) return;
             try {
                 initAudio();
                 const now = audioCtx.currentTime;
-                const osc = audioCtx.createOscillator();
-                const gain = audioCtx.createGain();
-                osc.connect(gain);
-                gain.connect(audioCtx.destination);
-                osc.frequency.value = freq;
-                osc.type = type;
-                gain.gain.setValueAtTime(0.2, now);
-                gain.gain.exponentialRampToValueAtTime(0.0001, now + duration);
-                osc.start();
-                osc.stop(now + duration);
-            } catch(e) { console.warn("audio err", e); }
+                const gainNode = audioCtx.createGain();
+                gainNode.gain.setValueAtTime(0.3, now);
+                gainNode.connect(audioCtx.destination);
+                
+                if (type === 'gong') {
+                    const osc = audioCtx.createOscillator();
+                    osc.connect(gainNode);
+                    osc.frequency.value = 160;
+                    osc.type = 'sine';
+                    osc.start();
+                    gainNode.gain.exponentialRampToValueAtTime(0.0001, now + 1.2);
+                    osc.stop(now + 1.2);
+                }
+                else if (type === 'laugh') {
+                    // Evil laugh effect
+                    const osc1 = audioCtx.createOscillator();
+                    const osc2 = audioCtx.createOscillator();
+                    osc1.connect(gainNode);
+                    osc2.connect(gainNode);
+                    osc1.frequency.value = 300;
+                    osc2.frequency.value = 450;
+                    osc1.type = 'sawtooth';
+                    osc2.type = 'sawtooth';
+                    osc1.start();
+                    osc2.start();
+                    gainNode.gain.exponentialRampToValueAtTime(0.0001, now + 0.6);
+                    osc1.stop(now + 0.6);
+                    osc2.stop(now + 0.6);
+                }
+                else if (type === 'vawulence') {
+                    const osc = audioCtx.createOscillator();
+                    osc.connect(gainNode);
+                    osc.frequency.value = 200;
+                    osc.type = 'square';
+                    osc.start();
+                    gainNode.gain.exponentialRampToValueAtTime(0.0001, now + 0.5);
+                    osc.stop(now + 0.5);
+                    // second hit
+                    setTimeout(() => {
+                        if(soundEnabled && audioCtx) {
+                            const osc2 = audioCtx.createOscillator();
+                            const g2 = audioCtx.createGain();
+                            osc2.connect(g2);
+                            g2.connect(audioCtx.destination);
+                            osc2.frequency.value = 160;
+                            osc2.type = 'square';
+                            g2.gain.setValueAtTime(0.2, audioCtx.currentTime);
+                            osc2.start();
+                            g2.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.4);
+                            osc2.stop(audioCtx.currentTime + 0.4);
+                        }
+                    }, 200);
+                }
+                else if (type === 'crackle') {
+                    for(let i=0;i<4;i++) {
+                        setTimeout(() => {
+                            if(soundEnabled && audioCtx) {
+                                const osc = audioCtx.createOscillator();
+                                const g = audioCtx.createGain();
+                                osc.connect(g);
+                                g.connect(audioCtx.destination);
+                                osc.frequency.value = 300 + Math.random() * 200;
+                                osc.type = 'triangle';
+                                g.gain.setValueAtTime(0.08, audioCtx.currentTime);
+                                osc.start();
+                                g.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.08);
+                                osc.stop(audioCtx.currentTime + 0.08);
+                            }
+                        }, i * 60);
+                    }
+                }
+            } catch(e) { console.log("Audio error:", e); }
         }
-        function playGong() { playTone(180, 1.2, 'sine'); setTimeout(()=> playTone(140, 1, 'sine'), 150); }
-        function playLaugh() { if(Math.random()<0.35) { playTone(330, 0.4, 'sawtooth'); playTone(440, 0.4, 'sawtooth'); } }
-        function playFireCrackle() { for(let i=0;i<3;i++) setTimeout(()=> playTone(300+Math.random()*200, 0.08, 'triangle'), i*60); }
-        function playVawulenceVoice() { playTone(200, 0.5, 'square'); setTimeout(()=> playTone(160, 0.5, 'square'), 100); }
-        
-        // mute toggle
-        const muteBtn = document.getElementById('muteSoundBtn');
-        muteBtn.addEventListener('click', () => {
-            soundEnabled = !soundEnabled;
-            muteBtn.innerHTML = soundEnabled ? "🔊 Unmuted" : "🔇 Muted";
-            if (!soundEnabled && audioCtx) audioCtx.suspend();
-            else if (soundEnabled && audioCtx) audioCtx.resume();
-        });
 
-        // confetti simple
+        // Confetti
         function burstConfetti() {
             const canvas = document.getElementById('confetti-canvas');
             const ctx = canvas.getContext('2d');
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
             let particles = [];
-            for(let i=0;i<80;i++) {
-                particles.push({ x: Math.random()*canvas.width, y: Math.random()*canvas.height, vx: (Math.random()-0.5)*6, vy: Math.random()*4+2, size: Math.random()*8+4, color: `hsl(${Math.random()*360}, 80%, 60%)` });
+            for(let i=0;i<100;i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * 8,
+                    vy: Math.random() * 5 + 3,
+                    size: Math.random() * 8 + 4,
+                    color: `hsl(${Math.random() * 360}, 80%, 60%)`
+                });
             }
-            let frames=0;
-            function drawConfetti() {
-                if(frames>70) { ctx.clearRect(0,0,canvas.width,canvas.height); return; }
+            let frames = 0;
+            function animate() {
+                if(frames > 70) { ctx.clearRect(0,0,canvas.width,canvas.height); return; }
                 ctx.clearRect(0,0,canvas.width,canvas.height);
                 particles.forEach(p => {
                     p.x += p.vx;
@@ -435,160 +534,159 @@
                     ctx.fillRect(p.x, p.y, p.size, p.size/1.5);
                 });
                 frames++;
-                requestAnimationFrame(drawConfetti);
+                requestAnimationFrame(animate);
             }
-            drawConfetti();
+            animate();
         }
 
-        let currentRoastText = "";
-        let currentVawulence = 0;
+        let currentRoast = "";
+        let currentVaw = 0;
 
-        // display roast logic
-        function displayRoast(optionalName = null) {
+        function displayRoast(forcedName = null) {
             let nameInput = document.getElementById('userName');
-            let name = optionalName !== null ? optionalName : nameInput.value;
+            let name = forcedName !== null ? forcedName : nameInput.value;
             if (!name || name.trim() === "") name = "Unknown Warrior";
-            let raw = generateUniqueRoast(name);
-            let finalRoast = addEmojisToRoast(raw);
-            let vawLevel = getVawulencePercent();
-            currentRoastText = finalRoast;
-            currentVawulence = vawLevel;
-            // epic confetti if vawulence > 90
-            const isEpic = vawLevel >= 90;
+            
+            let raw = generateRoast(name);
+            let final = addEmojis(raw);
+            let vaw = getVawulence();
+            currentRoast = final;
+            currentVaw = vaw;
+            
+            const isEpic = vaw >= 90;
             if(isEpic) burstConfetti();
             
-            document.getElementById('roastMessage').innerHTML = finalRoast;
-            document.getElementById('vawulenceMeter').innerHTML = `⚡ Vawulence Level: ${vawLevel}% ${isEpic ? '💀🔥 EPIC 🔥💀' : '😈'}`;
-            document.getElementById('roastEmoji').innerHTML = isEpic ? "💀💥🔥😈" : randomFrom(emojisList);
+            document.getElementById('roastMessage').innerHTML = final;
+            document.getElementById('vawulenceMeter').innerHTML = `⚡ Vawulence Level: ${vaw}% ${isEpic ? '💀🔥 EPIC VAWULENCE 🔥💀' : '😈'}`;
+            document.getElementById('roastEmoji').innerHTML = isEpic ? "💀🔥😈💥" : randomFrom(emojisList);
             document.getElementById('roastCard').style.display = "block";
-            // typing effect simulation: we replace innerHTML gradually? actually just display instantly but add shimmer
-            const msgDiv = document.getElementById('roastMessage');
-            msgDiv.style.transform = "scale(0.98)";
-            setTimeout(() => msgDiv.style.transform = "scale(1)", 100);
             
-            // SOUND FX
-            if(soundEnabled){
-                playGong();
-                playFireCrackle();
-                if(isEpic) playLaugh();
-                if(Math.random()<0.4) playVawulenceVoice();
+            // PLAY ALL SOUNDS (FIXED - LOUDER)
+            if(soundEnabled) {
+                playSound('gong');
+                playSound('crackle');
+                setTimeout(() => { playSound('vawulence'); }, 300);
+                if(isEpic || Math.random() < 0.4) {
+                    setTimeout(() => { playSound('laugh'); }, 600);
+                }
             }
             
-            // easter eggs
+            // Easter eggs
             if(name.toLowerCase() === "seb") {
-                setTimeout(()=> document.getElementById('roastMessage').innerHTML = "🔥 SEB-CREATIONS THE BOSS — Even Vawulence dey respect! 😈💀🔥 " + finalRoast, 300);
-            }
-            if(name.toLowerCase() === "vawulence") {
-                setTimeout(()=> document.getElementById('roastMessage').innerHTML = "😈💢 You invoked the spirit! Double roast: " + finalRoast + " 💢😈", 200);
+                setTimeout(() => document.getElementById('roastMessage').innerHTML = "🔥 SEB-CREATIONS THE LEGEND! Even Vawulence bows! 😈💀 " + final, 200);
             }
         }
-
-        function randomRoastWithoutName() {
-            const fakeNames = ["Mumu", "Opomulero", "Alhaji", "Ajebo", "Baddest"];
-            const randName = randomFrom(fakeNames);
-            document.getElementById('userName').value = randName;
-            displayRoast(randName);
+        
+        function randomRoast() {
+            const fakeNames = ["Mumu", "Olodo", "Werey", "Alhaji", "Baddest", "Oga"];
+            const rand = randomFrom(fakeNames);
+            document.getElementById('userName').value = rand;
+            displayRoast(rand);
         }
 
-        // --- SHARE AS IMAGE with WATERMARK & LINK ---
+        // Share functions
+        function shareWhatsApp() {
+            if(!currentRoast) return;
+            const text = `🔥 VAWULENCE HUB 🔥\n\n${currentRoast}\n\n⚡ Vawulence: ${currentVaw}%\n😈 Get roasted: https://vawulencehub.pages.dev/`;
+            window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
+        }
+        
+        function shareTwitter() {
+            if(!currentRoast) return;
+            const tweet = `${currentRoast} ⚡${currentVaw}% Vawulence 😈🔥\nRoast yourself:`;
+            window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(tweet)} https://vawulencehub.pages.dev/`, '_blank');
+        }
+        
+        function copyText() {
+            if(!currentRoast) return;
+            navigator.clipboard.writeText(`${currentRoast} | Vawulence ${currentVaw}% | VawulenceHub`);
+            alert("📋 Roast copied!");
+        }
+        
+        function copyLink() {
+            navigator.clipboard.writeText("https://vawulencehub.pages.dev/");
+            alert("🔗 Link copied!");
+        }
+        
         async function shareAsImage() {
-            if (!currentRoastText) return;
-            const roastCardElem = document.getElementById('roastCard');
-            // create a clone for high quality image capture
-            const cloneCard = roastCardElem.cloneNode(true);
-            cloneCard.style.position = 'fixed';
-            cloneCard.style.top = '-9999px';
-            cloneCard.style.left = '-9999px';
-            cloneCard.style.width = '500px';
-            cloneCard.style.background = '#111';
-            cloneCard.style.padding = '30px';
-            cloneCard.style.borderRadius = '40px';
-            cloneCard.style.display = 'block';
-            // add watermark footer
-            const watermarkDiv = document.createElement('div');
-            watermarkDiv.style.marginTop = '20px';
-            watermarkDiv.style.borderTop = '2px solid #fcd116';
-            watermarkDiv.style.paddingTop = '12px';
-            watermarkDiv.style.fontSize = '14px';
-            watermarkDiv.style.textAlign = 'center';
-            watermarkDiv.style.color = '#fcd116';
-            watermarkDiv.style.fontWeight = 'bold';
-            watermarkDiv.innerHTML = '🖼️ Seb-Creations 🔥 | VawulenceHub.ng/roast 🔗';
-            cloneCard.appendChild(watermarkDiv);
-            document.body.appendChild(cloneCard);
+            if(!currentRoast) return;
+            const card = document.getElementById('roastCard');
+            const clone = card.cloneNode(true);
+            clone.style.position = 'fixed';
+            clone.style.top = '-9999px';
+            clone.style.left = '-9999px';
+            clone.style.width = '500px';
+            clone.style.background = 'linear-gradient(135deg, #1a1a2e, #0f0f1a)';
+            clone.style.padding = '30px';
+            clone.style.borderRadius = '40px';
+            
+            const watermark = document.createElement('div');
+            watermark.style.marginTop = '20px';
+            watermark.style.borderTop = '2px solid #fcd116';
+            watermark.style.paddingTop = '12px';
+            watermark.style.fontSize = '14px';
+            watermark.style.textAlign = 'center';
+            watermark.style.color = '#fcd116';
+            watermark.innerHTML = '🖼️ Seb-Creations 🔥 | vawulencehub.pages.dev';
+            clone.appendChild(watermark);
+            document.body.appendChild(clone);
+            
             try {
-                const canvas = await html2canvas(cloneCard, { scale: 2, backgroundColor: '#111111' });
+                const canvas = await html2canvas(clone, { scale: 2, backgroundColor: '#0a0a1a' });
                 const link = document.createElement('a');
                 link.download = 'vawulence_roast.png';
                 link.href = canvas.toDataURL();
                 link.click();
-                // whatsapp share image? we can also try to copy image? but for simplicity we also show alert.
-                alert("✅ Image saved! Contains Seb-Creations watermark & link. Share everywhere! 📸");
-            } catch(err) { alert("Could not generate image, try again."); }
-            finally { document.body.removeChild(cloneCard); }
+                alert("✅ Image saved! Watermark included.");
+            } catch(e) { alert("Error generating image"); }
+            finally { document.body.removeChild(clone); }
         }
 
-        // ----- SHARE VIA WHATSAPP & TWITTER -----
-        function shareWhatsApp() {
-            if(!currentRoastText) return;
-            const text = `🔥 VAWULENCE HUB 🔥\n\n${currentRoastText}\n\n⚡ Vawulence Level: ${currentVawulence}%\n😈 Join the roast: ${window.location.href}`;
-            window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
-        }
-        function shareTwitter() {
-            if(!currentRoastText) return;
-            const tweet = `${currentRoastText} ⚡${currentVawulence}% Vawulence 😈🔥\nRoast yourself at:`;
-            window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(tweet)} ${encodeURIComponent(window.location.href)}`, '_blank');
-        }
-        function copyRoastText() {
-            if(!currentRoastText) return;
-            navigator.clipboard.writeText(`${currentRoastText} | Vawulence ${currentVawulence}% | VawulenceHub`);
-            alert("📋 Roast copied! Share the pain.");
-        }
-        function copySiteLink() {
-            navigator.clipboard.writeText(window.location.href);
-            alert("🔗 Link copied! Share Vawulence Hub with friends.");
+        // Dark/Light mode
+        let isDark = true;
+        function toggleTheme() {
+            isDark = !isDark;
+            document.body.style.background = isDark ? "linear-gradient(135deg, #0a0f0a 0%, #1a1a1a 100%)" : "linear-gradient(135deg, #f5e6ca 0%, #fff4e0 100%)";
+            document.querySelector('.container').style.background = isDark ? "rgba(0,0,0,0.9)" : "rgba(255,255,240,0.95)";
+            document.querySelector('.container').style.color = isDark ? "white" : "#1a1a1a";
+            document.getElementById('darkLightToggle').innerHTML = isDark ? "🌙 Dark" : "☀️ Light";
         }
 
-        // dark/light mode
-        const bodyEl = document.body;
-        const toggleModeBtn = document.getElementById('darkLightToggle');
-        toggleModeBtn.addEventListener('click', () => {
-            if(bodyEl.classList.contains('dark')) {
-                bodyEl.classList.remove('dark');
-                bodyEl.classList.add('light');
-            } else {
-                bodyEl.classList.remove('light');
-                bodyEl.classList.add('dark');
-            }
-        });
-        
-        // event listeners
+        // Event listeners
         document.getElementById('roastBtn').addEventListener('click', () => displayRoast());
-        document.getElementById('randomRoastBtn').addEventListener('click', randomRoastWithoutName);
+        document.getElementById('randomRoastBtn').addEventListener('click', randomRoast);
         document.getElementById('roastAgainBtn').addEventListener('click', () => {
-            const nameField = document.getElementById('userName').value;
-            if(nameField.trim()) displayRoast(nameField);
-            else randomRoastWithoutName();
+            const name = document.getElementById('userName').value;
+            if(name.trim()) displayRoast(name);
+            else randomRoast();
         });
-        document.getElementById('copyTextBtn').addEventListener('click', copyRoastText);
+        document.getElementById('copyTextBtn').addEventListener('click', copyText);
         document.getElementById('whatsappShareBtn').addEventListener('click', shareWhatsApp);
         document.getElementById('twitterShareBtn').addEventListener('click', shareTwitter);
         document.getElementById('shareImageBtn').addEventListener('click', shareAsImage);
-        document.getElementById('copyLinkBtn').addEventListener('click', copySiteLink);
+        document.getElementById('copyLinkBtn').addEventListener('click', copyLink);
+        document.getElementById('darkLightToggle').addEventListener('click', toggleTheme);
         
-        // Press Enter
+        const muteBtn = document.getElementById('muteSoundBtn');
+        muteBtn.addEventListener('click', () => {
+            soundEnabled = !soundEnabled;
+            muteBtn.innerHTML = soundEnabled ? "🔊 Sound ON" : "🔇 Sound OFF";
+            if(!soundEnabled && audioCtx) audioCtx.suspend();
+            else if(soundEnabled && audioCtx) audioCtx.resume();
+        });
+        
         document.getElementById('userName').addEventListener('keypress', (e) => { if(e.key === 'Enter') displayRoast(); });
         
-        // show welcome tease
+        // Auto-init audio on first click anywhere
+        document.body.addEventListener('click', () => { if(audioCtx && audioCtx.state === 'suspended') audioCtx.resume(); }, { once: true });
+        
+        // Welcome tease
         setTimeout(() => {
-            document.getElementById('roastCard').style.display = "flex";
-            document.getElementById('roastMessage').innerHTML = "🔥 Type your name, collect hot vawulence 🔥";
+            document.getElementById('roastCard').style.display = "block";
+            document.getElementById('roastMessage').innerHTML = "🔥 Type your name and collect hot vawulence! 🔥";
             document.getElementById('vawulenceMeter').innerHTML = "⚡ Ready to burn ⚡";
             document.getElementById('roastEmoji').innerHTML = "🇳🇬😈🔥";
-        }, 300);
-        
-        // preload audio context on first click
-        document.body.addEventListener('click', () => { if(audioCtx && audioCtx.state === 'suspended') audioCtx.resume(); }, { once: true });
+        }, 500);
     </script>
 </body>
 </html>
